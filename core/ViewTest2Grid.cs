@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace XLSUploader.core
 {
-    public class ViewTestClasGrid
+    public class ViewTest2Grid
     {
         public int Id { get; set; }
-        public string NameComp { get; set; }
         public string Program { get; set; }
-        public ViewTestClasGrid(int id, string nameComp, string program)
+        public string Owner { get; set; }
+
+        public ViewTest2Grid(int id, string program, string owner)
         {
             Id = id;
-            NameComp = nameComp;
             Program = program;
+            Owner = owner;
         }
-
     }
 }

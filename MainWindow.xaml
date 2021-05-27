@@ -17,11 +17,15 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Content="Выбрать файл" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <DataGrid x:Name="fstFile" Grid.Row="1" Grid.Column="0" Margin="5,0,10,4" AutoGenerateColumns="True" ItemsSource="{DynamicResource items}">
+        <DataGrid x:Name="fstFile" Grid.Row="1" Grid.Column="0" Margin="5,0,10,4" AutoGenerateColumns="True" ItemsSource="{DynamicResource fstItems}">
             <DataGrid.Resources>
-                <col:ArrayList x:Key="items"></col:ArrayList>
+                <col:ArrayList x:Key="fstItems"></col:ArrayList>
             </DataGrid.Resources>
         </DataGrid>
-        <DataGrid x:Name="sndFile" Grid.Row="1" Grid.Column="1" Margin="10,0,5,4"></DataGrid>
+        <DataGrid x:Name="sndFile" Grid.Row="1" Grid.Column="1" Margin="10,0,5,4" AutoGenerateColumns="True"  ItemsSource="{DynamicResource sndItems}">
+            <DataGrid.Resources>
+                <col:ArrayList x:Key="sndItems"></col:ArrayList>
+            </DataGrid.Resources>
+        </DataGrid>
     </Grid>
 </Window>
