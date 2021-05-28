@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExcelHelper;
+#if DEBUG
+using XLSUploader.debugHelper;
+#endif
 
 namespace XLSUploader
 {
@@ -30,23 +33,9 @@ namespace XLSUploader
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnSelectFile(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFile = new();
-            openFile.DefaultExt = "*.xlsx";
-            openFile.Multiselect = true;
-            openFile.Filter = "файл Excel (*.xlsx)|*.xlsx";
-            openFile.Title = "Выберите файл базы данных";
-            if (!(bool)openFile.ShowDialog())
-            {
-                return;
-            }
-            
-            if (openFile.FileNames.Length <= 1 || openFile.FileNames.Length > 2)
-            {
-                MessageBox.Show("Выберите 2 файла", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            OpenFileDialog openFile = core.Uploader.ShowFileOpen("*.xlsx", "файл Excel (*.xlsx)|*.xlsx", "Выберите файл базы данных", true, 2);
             clasGrids = new();
             viewTests = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
@@ -77,6 +66,18 @@ namespace XLSUploader
             fstFile.SelectionMode = DataGridSelectionMode.Extended;
             sndFile.SelectionMode = DataGridSelectionMode.Extended;
             GC.Collect();
+
+#if DEBUG
+            ConsoleHelper.AllocConsole();
+            Console.WriteLine(fstFile.Columns[0].Header);
+            Console.ReadKey();
+            ConsoleHelper.FreeConsole();
+#endif
+        }
+
+        private void btnSelectColumn(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

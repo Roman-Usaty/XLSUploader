@@ -16,9 +16,9 @@
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Выбрать файл" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Выбрать файл" HorizontalAlignment="Left" Grid.Column="0" Margin="10,0,0,0" VerticalAlignment="Center" Click="btnSelectFile"/>
         <DataGrid x:Name="fstFile" Grid.Row="1" Grid.Column="0" Margin="5,0,10,4" AutoGenerateColumns="True" ItemsSource="{DynamicResource fstItems}">
-            <DataGrid.Resources>
+            <DataGrid.Resources >
                 <col:ArrayList x:Key="fstItems"></col:ArrayList>
             </DataGrid.Resources>
         </DataGrid>
@@ -27,5 +27,6 @@
                 <col:ArrayList x:Key="sndItems"></col:ArrayList>
             </DataGrid.Resources>
         </DataGrid>
+        <Button Content="Выбрать колонку" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="148,0,0,0" Click="btnSelectColumn"/>
     </Grid>
 </Window>
