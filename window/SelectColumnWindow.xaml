@@ -1,0 +1,30 @@
+﻿<Window x:Class="XLSUploader.window.SelectColumnWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XLSUploader.window"
+        xmlns:col="clr-namespace:System.Collections;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="SelectColumn" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="fstFile" Grid.Row="1" Grid.Column="0" ItemsSource="{DynamicResource fstFileResources}">
+            <ListBox.Resources>
+                <col:ArrayList x:Key="fstFileResources"></col:ArrayList>
+            </ListBox.Resources>
+        </ListBox>
+        <ListBox x:Name="sndFile" Grid.Row="1" Grid.Column="1" ItemsSource="{DynamicResource sndFileResources}">
+            <ListBox.Resources>
+                <col:ArrayList x:Key="sndFileResources"></col:ArrayList>
+            </ListBox.Resources>
+        </ListBox>
+    </Grid>
+</Window>

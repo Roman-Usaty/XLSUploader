@@ -27,6 +27,6 @@
                 <col:ArrayList x:Key="sndItems"></col:ArrayList>
             </DataGrid.Resources>
         </DataGrid>
-        <Button Content="Выбрать колонку" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="148,0,0,0" Click="btnSelectColumn"/>
+        <Button x:Name="ShowSelectCol" Content="Выбрать колонку" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="148,0,0,0" Click="btnSelectColumn" Visibility="Hidden"/>
     </Grid>
 </Window>

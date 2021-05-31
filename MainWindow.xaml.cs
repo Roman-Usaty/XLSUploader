@@ -28,6 +28,9 @@ namespace XLSUploader
     {
         protected List<core.ViewTestClasGrid> clasGrids;
         protected List<core.ViewTest2Grid> viewTests;
+#pragma warning disable CS0436 // Тип конфликтует с импортированным типом
+        public Excel excel;
+#pragma warning restore CS0436 // Тип конфликтует с импортированным типом
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +43,7 @@ namespace XLSUploader
             viewTests = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
             {
-                Excel excel = new();
+                excel = new();
                 excel.FileOpen(openFile.FileNames[numberFile]);
                 if (numberFile == 0)
                 {
@@ -50,6 +53,7 @@ namespace XLSUploader
                         clasGrids.Add(new core.ViewTestClasGrid(Convert.ToInt32(excel.Table[i][j]), excel.Table[i][j + 1], excel.Table[i][j + 2]));
                     }
                     fstFile.ItemsSource = clasGrids;
+                    core.GlobalFileData.FileData.Add(clasGrids);
                 }
                 else
                 {
@@ -59,25 +63,34 @@ namespace XLSUploader
                         viewTests.Add(new core.ViewTest2Grid(Convert.ToInt32(excel.Table[i][p]), excel.Table[i][p + 1], excel.Table[i][p + 2]));
                     }
                     sndFile.ItemsSource = viewTests;
+                    core.GlobalFileData.FileData.Add(viewTests);
                 }
             }
+            
+
             fstFile.IsReadOnly = true;
             sndFile.IsReadOnly = true;
             fstFile.SelectionMode = DataGridSelectionMode.Extended;
             sndFile.SelectionMode = DataGridSelectionMode.Extended;
             GC.Collect();
-
-#if DEBUG
-            ConsoleHelper.AllocConsole();
-            Console.WriteLine(fstFile.Columns[0].Header);
-            Console.ReadKey();
-            ConsoleHelper.FreeConsole();
-#endif
+            ShowSelectCol.Visibility = Visibility.Visible;
         }
 
         private void btnSelectColumn(object sender, RoutedEventArgs e)
         {
-
+            string[] fstFileHeader = new string[fstFile.Columns.Count];
+            string[] sndFileHeader = new string[sndFile.Columns.Count];
+            for (int i = 0; i < fstFile.Columns.Count; i++)
+            {
+                fstFileHeader[i] = (string)fstFile.Columns[i].Header;
+            }
+            for(int i = 0; i < sndFile.Columns.Count; i++)
+            {
+                sndFileHeader[i] = (string)sndFile.Columns[i].Header;
+            }
+            window.SelectColumnWindow selectColumn = new(fstFileHeader, sndFileHeader);
+            selectColumn.Show();
+            Close();
         }
     }
 }

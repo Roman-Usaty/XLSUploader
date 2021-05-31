@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Reflection;
 namespace XLSUploader.core
 {
-    public class ViewTestClasGrid
+    public class ViewTestClasGrid : BaseExelObject
     {
         public int Id { get; set; }
         public string NameComp { get; set; }
@@ -18,5 +18,13 @@ namespace XLSUploader.core
             Program = program;
         }
 
+        public override object GetProperties(string name)
+        {
+            Type thisType = typeof(ViewTestClasGrid);
+
+            PropertyInfo property = thisType.GetProperty(name);
+            object value = property.GetValue(this);
+            return value;
+        }
     }
 }
