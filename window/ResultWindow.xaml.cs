@@ -23,7 +23,6 @@ namespace XLSUploader.window
         protected string[] NameFile { get; set; }
 
         protected dynamic resultList;
-        protected List<string> columnList;
         public ResultWindow(string[] columnName, string[] namefile,
                             List<core.ViewTestClasGrid> clasGrids, List<core.ViewTest2Grid> viewTests)
         {

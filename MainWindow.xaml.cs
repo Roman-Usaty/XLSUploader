@@ -28,9 +28,7 @@ namespace XLSUploader
     {
         protected List<core.ViewTestClasGrid> clasGrids;
         protected List<core.ViewTest2Grid> viewTests;
-#pragma warning disable CS0436 // Тип конфликтует с импортированным типом
-        public Excel excel;
-#pragma warning restore CS0436 // Тип конфликтует с импортированным типом
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +41,9 @@ namespace XLSUploader
             viewTests = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
             {
-                excel = new();
+#pragma warning disable CS0436 // Тип конфликтует с импортированным типом
+                Excel excel = new();
+#pragma warning restore CS0436 // Тип конфликтует с импортированным типом
                 excel.FileOpen(openFile.FileNames[numberFile]);
                 if (numberFile == 0)
                 {
