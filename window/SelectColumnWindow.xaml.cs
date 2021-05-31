@@ -56,30 +56,29 @@ namespace XLSUploader.window
             ListBox listBox = sender as ListBox;
             MessageBoxResult dialog = MessageBox.Show($"Вы уверены что хотите выбрать {listBox.SelectedItem}" +
                 $" в качестве колонки слияния", "information", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (dialog == MessageBoxResult.Yes)
-            {
-                if (chkElement)
-                {
-                    selectedColumns[^1] = (string)listBox.SelectedItem;
-                    namesSelectedColumns[^1] = listBox.Name;
-                    ResultWindow resultWindow = new(selectedColumns, namesSelectedColumns,
-                                                    core.GlobalFileData.FileData[0] as List<core.ViewTestClasGrid>, 
-                                                    core.GlobalFileData.FileData[1] as List<core.ViewTest2Grid>);
-                    resultWindow.Show();
-                    Close();
-                    return;
-                }
-                selectedColumns[0] = (string)listBox.SelectedItem;
-                namesSelectedColumns[0] = listBox.Name;
-                listBox.IsEnabled = false;
-                sndFile.IsEnabled = true;
-                _ = MessageBox.Show("Выберите вторую колонку", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                chkElement = true;
-            }
-            else
+
+            if (dialog != MessageBoxResult.Yes)
             {
                 return;
             }
+
+            if (chkElement)
+            {
+                selectedColumns[^1] = (string)listBox.SelectedItem;
+                namesSelectedColumns[^1] = listBox.Name;
+                ResultWindow resultWindow = new(selectedColumns, namesSelectedColumns,
+                                                core.GlobalFileData.FileData[0] as List<core.ViewTestClasGrid>,
+                                                core.GlobalFileData.FileData[1] as List<core.ViewTest2Grid>);
+                resultWindow.Show();
+                Close();
+                return;
+            }
+            selectedColumns[0] = (string)listBox.SelectedItem;
+            namesSelectedColumns[0] = listBox.Name;
+            listBox.IsEnabled = false;
+            sndFile.IsEnabled = true;
+            _ = MessageBox.Show("Выберите вторую колонку", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            chkElement = true;
         }
 
         private void SelectColumn_Loaded(object sender, RoutedEventArgs e)
