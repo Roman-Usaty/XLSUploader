@@ -26,8 +26,8 @@ namespace XLSUploader
     /// </summary>
     public partial class MainWindow : Window
     {
-        protected List<core.ViewTestClasGrid> clasGrids;
-        protected List<core.ViewTest2Grid> viewTests;
+        protected List<core.WorkListS> workListS;
+        protected List<core.RegistrySoftSoniir> registrySoftSoniirs;
 
         public MainWindow()
         {
@@ -37,8 +37,8 @@ namespace XLSUploader
         private void btnSelectFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFile = core.Uploader.ShowFileOpen("*.xlsx", "файл Excel (*.xlsx)|*.xlsx", "Выберите файл базы данных", true, 2);
-            clasGrids = new();
-            viewTests = new();
+            workListS = new();
+            registrySoftSoniirs = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
             {
 #pragma warning disable CS0436 // Тип конфликтует с импортированным типом
@@ -48,22 +48,26 @@ namespace XLSUploader
                 if (numberFile == 0)
                 {
                     int j = 0;
-                    for (int i = 1; i < excel.Table.Count; i++)
+                    for (int i = 3; i < excel.Table.Count; i++)
                     {
-                        clasGrids.Add(new core.ViewTestClasGrid(Convert.ToInt32(excel.Table[i][j]), excel.Table[i][j + 1], excel.Table[i][j + 2]));
+                        workListS.Add(new core.WorkListS(excel.Table[i][j], excel.Table[i][j + 1], excel.Table[i][j + 2],
+                            excel.Table[i][j + 3], excel.Table[i][j + 4], 
+                            excel.Table[i][j + 5], excel.Table[i][j + 6], excel.Table[i][j + 7]));
                     }
-                    fstFile.ItemsSource = clasGrids;
-                    core.GlobalFileData.FileData.Add(clasGrids);
+                    fstFile.ItemsSource = workListS;
+                    core.GlobalFileData.FileData.Add(workListS);
                 }
                 else
                 {
                     int p = 0;
-                    for (int i = 1; i < excel.Table.Count; i++)
+                    for (int i = 3; i < excel.Table.Count; i++)
                     {
-                        viewTests.Add(new core.ViewTest2Grid(Convert.ToInt32(excel.Table[i][p]), excel.Table[i][p + 1], excel.Table[i][p + 2]));
+                        registrySoftSoniirs.Add(new core.RegistrySoftSoniir(i.ToString(),excel.Table[i][p], excel.Table[i][p + 1], 
+                            excel.Table[i][p + 2], excel.Table[i][p + 3], 
+                            excel.Table[i][p + 4], excel.Table[i][p + 5]));
                     }
-                    sndFile.ItemsSource = viewTests;
-                    core.GlobalFileData.FileData.Add(viewTests);
+                    sndFile.ItemsSource = registrySoftSoniirs;
+                    core.GlobalFileData.FileData.Add(registrySoftSoniirs);
                 }
             }
             

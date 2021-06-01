@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,9 @@ namespace XLSUploader.window
         protected string[] NameFile { get; set; }
 
         protected dynamic resultList;
+
         public ResultWindow(string[] columnName, string[] namefile,
-                            List<core.ViewTestClasGrid> clasGrids, List<core.ViewTest2Grid> viewTests)
+                            List<core.WorkListS> workListS, List<core.RegistrySoftSoniir> registrySoftSoniirs)
         {
             InitializeComponent();
             ColumnNames = columnName;
@@ -32,9 +34,14 @@ namespace XLSUploader.window
             resultList = new List<List<string>>();
             Loaded += ResultWindow_Loaded;
             int i = 1;
-            resultList = from grid in clasGrids
-                         join view in viewTests on grid.GetProperties(columnName[0]) equals view.GetProperties(columnName[1])
-                         select new { Id = i++, grid.NameComp, grid.Program, view.Owner };
+            resultList = from WorkList in workListS
+                         from Registry in registrySoftSoniirs
+                         let fstWork = WorkList.IsTryRegex(WorkList.GetProperties(columnName[0]), Registry.GetKeyComparer(Registry.GetProperties(columnName[1])))
+                         where fstWork == true
+                         select new { Id = i++, WorkList.Name, WorkList.Version, WorkList.LicenseType,
+                         WorkList.Count, WorkList.ValiditiPeriod, WorkList.InstallPlace, WorkList.IsMicrosoft,
+                         RegistryName = Registry.Name, Registry.Owner, Registry.Function, 
+                         Registry.StartDate, Registry.Code, Registry.IsRussia};
         }
 
         private void ResultWindow_Loaded(object sender, RoutedEventArgs e)

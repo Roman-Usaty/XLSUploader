@@ -67,8 +67,8 @@ namespace XLSUploader.window
                 selectedColumns[^1] = (string)listBox.SelectedItem;
                 namesSelectedColumns[^1] = listBox.Name;
                 ResultWindow resultWindow = new(selectedColumns, namesSelectedColumns,
-                                                core.GlobalFileData.FileData[0] as List<core.ViewTestClasGrid>,
-                                                core.GlobalFileData.FileData[1] as List<core.ViewTest2Grid>);
+                                                core.GlobalFileData.FileData[0] as List<core.WorkListS>,
+                                                core.GlobalFileData.FileData[1] as List<core.RegistrySoftSoniir>);
                 resultWindow.Show();
                 Close();
                 return;
