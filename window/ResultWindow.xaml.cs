@@ -83,7 +83,7 @@ namespace XLSUploader.window
         {
             Random random = new();
             ExcelHelper.Excel excel = new();
-            excel.saveSucces += Excel_saveSucces;
+            excel.SaveSucces += Excel_saveSucces;
             foreach (ResultObject @object in viewList)
             {
                 resultList.Add(@object.GetList());
