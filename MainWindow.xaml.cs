@@ -41,9 +41,7 @@ namespace XLSUploader
             registrySoftSoniirs = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
             {
-#pragma warning disable CS0436 // Тип конфликтует с импортированным типом
                 Excel excel = new();
-#pragma warning restore CS0436 // Тип конфликтует с импортированным типом
                 excel.FileOpen(openFile.FileNames[numberFile]);
                 if (numberFile == 0)
                 {
@@ -55,7 +53,7 @@ namespace XLSUploader
                             excel.Table[i][j + 5], excel.Table[i][j + 6], excel.Table[i][j + 7]));
                     }
                     fstFile.ItemsSource = workListS;
-                    core.GlobalFileData.FileData.Add(workListS);
+                    _ = core.GlobalFileData.FileData.Add(workListS);
                 }
                 else
                 {
@@ -67,7 +65,7 @@ namespace XLSUploader
                             excel.Table[i][p + 4], excel.Table[i][p + 5]));
                     }
                     sndFile.ItemsSource = registrySoftSoniirs;
-                    core.GlobalFileData.FileData.Add(registrySoftSoniirs);
+                    _ = core.GlobalFileData.FileData.Add(registrySoftSoniirs);
                 }
             }
             

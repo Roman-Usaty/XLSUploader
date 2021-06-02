@@ -41,24 +41,7 @@ namespace XLSUploader.core
         }
         public override Regex GetKeyComparer(object Object)
         {
-            string KeyString = (string)Object;
-            string[] arr_KeyString = KeyString.Split(' ');
-            if (arr_KeyString[0] == "Windows" &&  int.TryParse(arr_KeyString[1], out _))
-            {
-                return new Regex(@"^Win\w");
-            } 
-            else if (arr_KeyString[0] == "Windows")
-            {
-                return new Regex(string.Format(@"^{0}\w", arr_KeyString[1]));
-            } 
-            else if (arr_KeyString[0] == "Win" && arr_KeyString[1] == "Pro" && int.TryParse(arr_KeyString[2], out _))
-            {
-                return new Regex(@"^Win\s");
-            }
-            else
-            {
-                return new Regex(string.Format(@"^{0}\s", Regex.Escape(arr_KeyString[0])));
-            }
+            return null;
         }
         public override bool IsTryRegex(object Object, Regex otherRegex)
         {

@@ -46,15 +46,15 @@ namespace XLSUploader.core
             {
                 if (arr_KeyString[1] == "10")
                 {
-                    return new Regex(@"(^Win || ^Windows)\s(Pro || 10)\s(10 || Pro)");
+                    return new Regex(@"(\AWin Pro 10)|(^Windows Pro 10)");
                 }
                 else if (arr_KeyString[1] == "XP,")
                 {
-                    return new Regex(@"Windows\s(XP || 7 || Vista)");
+                    return new Regex(@"(Windows|\AWindows)\s(XP|7|Vista)\s\w");
                 }
                 else if (arr_KeyString[1] == "Server")
                 {
-                    return new Regex(@"^Windows\sServer");
+                    return new Regex(@"\AWindows\sServer");
                 }
             }
             else if (arr_KeyString[0] == "Exchange")
