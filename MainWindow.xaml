@@ -6,7 +6,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=System.Runtime"
         xmlns:local="clr-namespace:XLSUploader"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="XLSXUploader" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>

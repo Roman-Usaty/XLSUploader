@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:XLSUploader.window"
         xmlns:col="clr-namespace:System.Collections;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="SelectColumn" Height="450" Width="800">
+        Title="XLSXUploader: Выьерите колонку" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>

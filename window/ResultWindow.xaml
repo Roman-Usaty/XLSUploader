@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:XLSUploader.window"
         xmlns:col="clr-namespace:System.Collections;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="ResultWindow" Height="450" Width="800">
+        Title="XLSXUploader: Готово!" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"></RowDefinition>

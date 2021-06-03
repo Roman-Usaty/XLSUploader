@@ -37,6 +37,7 @@ namespace XLSUploader
         private void btnSelectFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFile = core.Uploader.ShowFileOpen("*.xlsx", "файл Excel (*.xlsx)|*.xlsx", "Выберите файл базы данных", true, 2);
+            if ( openFile == null || openFile.FileNames.Length <= 0) return;
             workListS = new();
             registrySoftSoniirs = new();
             for(int numberFile = 0; numberFile < openFile.FileNames.Length; numberFile++)
